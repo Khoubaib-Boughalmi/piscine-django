@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="displayFormContents(event)">
+        <div>
+            <label for="name">Firstname</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+        <div>
+            <label for="name">Email</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <label for="name">name</label>
+            <input type="name" name="name" id="name">
+        </div>
+        <div>
+            <label for="phone">phone</label>
+            <input type="tel" name="phone" id="phone">
+        </div>
+        <div>
+            <label for="name">Age</label>
+            <input type="age" name="age" id="age">
+        </div>
+        <div>
+            <label for="name">Gender</label>
+            <input type="checkbox" value="male" id="gender_male"> Male
+            <input type="checkbox" value="female" id="gender_female"> Female
+            <input type="checkbox" value="other" id="gender_other"> Other
+        </div>
+        <div>
+            <label for="name">Student At 42?</label>
+            <input type="checkbox" id="student">
+        </div>
+        <div>
+            <button type="submit">Run that sexy javascript!</button>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+    function displayFormContents(event) {
+        event.preventDefault();
+        var out = '';
+
+        out += 'Firstname = ' + document.getElementById('firstname').value + '\n';
+        out += 'Name = ' + document.getElementById('name').value + '\n';
+        out += 'Phone = ' + document.getElementById('phone').value + '\n';
+        out += 'Age = ' + document.getElementById('age').value + '\n';
+        out += 'Email = ' + document.getElementById('email').value + '\n';
+
+        out += 'Gender = ';
+        if (document.getElementById('gender_male').checked == true)
+            out += document.getElementById('gender_male').value;
+        if (document.getElementById('gender_female').checked == true)
+            out += document.getElementById('gender_female').value;
+        if (document.getElementById('gender_other').checked == true)
+            out += document.getElementById('gender_other').value;
+        out += '\n';
+
+        if (document.getElementById('student').checked == true)
+            out += 'Student at 42 = yes';
+        else
+            out += 'Student at 42 = no';
+
+        alert(out);
+        event.preventDefault();
+
+    }
+</script>
+
+</html>
