@@ -17,5 +17,8 @@ capital_cities = {
 "CO": "Denver"
 }
 
-state_name = sys.argv[1]
-print (capital_cities[states[state_name]])
+capital_value = capital_cities[states[sys.argv[1]]]
+if capital_value:
+    print(capital_value)
+else:
+    print("Unknown state")
