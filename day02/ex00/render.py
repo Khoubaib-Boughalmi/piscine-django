@@ -50,9 +50,17 @@ def inject_values_into_template(templateList, settingsList):
     populated_template = ""
     
     for line in templateList:
-        match = re.search(pattern, line)
-        if match:
-            populated_template += re.sub(pattern, setting_obj.get(match.group(1), "").replace("\"", ""), line)
+        res = re.search(pattern, line)
+        if(res):
+            populated_template += line[:res.start()]
+            while(res) :
+                populated_template += setting_obj.get(res.group(1), "").replace("\"", "")
+                line = line[res.end():]
+                res = re.search(pattern, line)
+                if(res):
+                    populated_template += line[:res.start()]
+                else:
+                    populated_template += line[:]
         else:
             populated_template += line
     return populated_template
@@ -80,7 +88,6 @@ if __name__ == '__main__':
     settingsList = check_and_get_settings_file()
     parse_settings_file(settingsList)
     populated_template = inject_values_into_template(templateList, settingsList)
-    print(populated_template)
     final_html = generate_html(populated_template)
     with open("views.html", "w") as f:
         f.write(final_html)
