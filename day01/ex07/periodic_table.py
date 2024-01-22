@@ -1,4 +1,5 @@
 import sys
+import random
 
 with open("periodic_table.txt", "r") as f:
     lines = f.readlines()
@@ -21,15 +22,21 @@ for line in lines:
     _List.append(dataline)
 
 def print_filled_atom(name, number, small, position, molar):
+    # Generate random RGB values for the background color
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    background_color = f"rgba({r}, {g}, {b}, 0.5)"
+
     atom = f"""
-        <td style="border: 1px solid black; padding:10px">
+        <td style="border: 1px solid black; padding:10px; background-color: {background_color}">
             <h4>{name}</h4>
             <ul>
                 <li>No {number}</li>
                 <li>{small}</li>
                 <li>{molar}</li>
-            <li>{number} electron</li>
-            <ul>
+                <li>{number} electron</li>
+            </ul>
         </td>
     """
     return atom
